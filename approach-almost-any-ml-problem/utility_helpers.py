@@ -240,7 +240,7 @@ class Metrics:
             print(self.empty_precession_plot_list)
             plt.figure(figsize=(10, 10))
             plt.grid()
-            plt.plot(self.empty_recall_plot_list, self.empty_precession_plot_list, color='orange', lw=2, label='P-R Curve')
+            plt.plot(self.empty_recall_plot_list, self.empty_precession_plot_list, color='lightpink', lw=4, label='P-R Curve')
             plt.xlabel('Recall', fontsize=20)
             plt.ylabel('Precision', fontsize=20)
             plt.title("Precision Recall Curve", fontsize=20)
