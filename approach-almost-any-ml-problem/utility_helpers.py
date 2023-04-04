@@ -105,6 +105,8 @@ class KFoldCrossValidation:
 
 class Metrics:
     def __init__(self, threshold=0.5):
+
+        self.num_classes = None
         self.log_loss_score = None
         self.roc_score = None
         self.roc_auc_fpr_list = None
@@ -212,6 +214,9 @@ class Metrics:
         except Exception as e:
             raise e
 
+        finally:
+            self.precession = None
+
     def compute_recall(self, true, predictions):
         try:
             tp_ = self.compute_true_positive(true, predictions)
@@ -222,6 +227,9 @@ class Metrics:
 
         except Exception as e:
             raise e
+
+        finally:
+            self.recall = None
 
     def compute_precision_recall_curve(self, true, predictions, threshold_list):
         try:
@@ -250,6 +258,10 @@ class Metrics:
         except Exception as e:
             raise e
 
+        finally:
+            self.empty_precession_plot_list = None
+            self.empty_recall_plot_list = None
+
     def compute_f1_score(self, true, predictions):
         try:
             re_ = self.compute_recall(true, predictions)
@@ -262,6 +274,9 @@ class Metrics:
         except Exception as e:
             raise e
 
+        finally:
+            self.f1_score = None
+
     def compute_true_positive_rate(self, true, predictions):
         try:
             tp_ = self.compute_true_positive(true, predictions)
@@ -272,6 +287,9 @@ class Metrics:
 
         except Exception as e:
             raise e
+
+        finally:
+            self.true_positive_rate = None
 
     def compute_false_positive_rate(self, true, predictions):
         try:
@@ -284,6 +302,9 @@ class Metrics:
 
         except Exception as e:
             raise e
+
+        finally:
+            self.false_positive_rate = None
 
     def compute_roc_auc_curve(self, true, predictions, thresholds):
         try:
@@ -314,6 +335,10 @@ class Metrics:
         except Exception as e:
             raise e
 
+        finally:
+            self.roc_auc_tpr_list = None
+            self.roc_auc_fpr_list = None
+
     def compute_roc_auc_score(self, true, predictions):
         try:
             self.roc_score = sklearn.metrics.roc_auc_score(true, predictions)
@@ -322,6 +347,9 @@ class Metrics:
 
         except Exception as e:
             raise e
+
+        finally:
+            self.roc_score = None
 
     def compute_log_loss(self, true, proba):
         try:
@@ -332,3 +360,16 @@ class Metrics:
         except Exception as e:
             raise e
 
+        finally:
+            self.log_loss_score = None
+
+    def compute_macro_precession(self, true, predictions):
+        try:
+            self.num_classes = np.unique(true)
+
+        except Exception as e:
+            raise e
+            
+        finally:
+            self.num_classes = None
+            
